@@ -52,18 +52,48 @@ app.use('/admin',adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+
   next(createError(404));
 });
-
+var notiModel = require('./app/models/notiModel').thongbao
+var cateModel = require('./app/models/categorieModel').theloai;
+var accModel = require('./app/models/accModel').accouts
+var postModel = require('./app/models/postModel').post
 // error handler
-app.use(function(err, req, res, next) {
+app.use(async function(err, req, res, next) {
+  var iduser
+  if (req.session.passport) {
+    iduser = req.session.passport.user
+    datatacgia = await accModel.findOne({
+      _id: iduser
+    })
+  }
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  let thongbao = await notiModel.countDocuments({
+    receiver: iduser,
+    check: false
+  }).sort({
+    ngaytao: -1
+  })
+  let tinnoibat = await postModel.find().sort({
+    soluotxem: -1,
+    count_comment: -1
+  })
+  let dataMenu = await cateModel.find().populate('subTheLoai').then((result) => {
+    return result
+  })
+  let dataAcc = await accModel.findOne({_id : iduser})
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render("404Page",{
+    title: 'Lỗi Không Tìm Thấy Trang',
+    accData: dataAcc,
+    thongbao: thongbao,
+    dataMenu: dataMenu,
+    tinnoibat:tinnoibat
+  });
 });
 
 
