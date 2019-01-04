@@ -1,0 +1,166 @@
+<div class="sidebar-container">
+ 				<div class="sidemenu-container navbar-collapse collapse fixed-menu">
+	                <div id="remove-scroll">
+	                    <ul class="sidemenu page-header-fixed p-t-20" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+	                        <li class="sidebar-toggler-wrapper hide">
+	                            <div class="sidebar-toggler">
+	                                <span></span>
+	                            </div>
+	                        </li>
+	                        <li class="sidebar-user-panel">
+	                            <div class="user-panel">
+	                                <div class="row">
+                                            <div class="sidebar-userpic">
+                                                <img src="<%=admin.image%>" class="img-responsive" alt=""> </div>
+                                        </div>
+                                        <div class="profile-usertitle">
+                                            <div class="sidebar-userpic-name"><%= admin.displayName%> </div>
+                                            <div class="profile-usertitle-job"> <%= admin.email%> </div>
+                                        </div>
+                                       
+	                            </div>
+	                        </li>
+	                        
+	                        <li class="nav-item <% if (pagename === 'dashboard') { %>active<% } %>" >
+	                            <a href="/admin" class="nav-link nav-toggle">
+	                                <i class="material-icons">dashboard</i>
+	                                <span class="title">Dashboard</span>
+                                	
+	                            </a>
+	                           
+	                        </li>
+	                        <li class="nav-item <% if (pagename === 'post' || pagename ==='addpost') { %>active<% } %>">
+	                            <a href="#" class="nav-link nav-toggle">
+	                                <i class="material-icons">speaker_notes</i>
+	                                <span class="title">Bài Viết</span>
+	                                <span class="arrow"></span>
+	                               
+	                            </a>
+	                            <ul class="sub-menu">
+	                                <li class="nav-item <% if (pagename === 'addpost') { %>active<% } %>">
+	                                    <a href="/admin/addpost" class="nav-link ">
+	                                        <span class="title">Viết bài viết mới</span>
+	                                    </a>
+	                                </li>
+	                                <li class="nav-item <% if (pagename === 'post') { %>active<% } %>">
+	                                    <a href="/admin/posts" class="nav-link ">
+	                                        <span class="title">Xem tất cả bài viết</span>
+	                                    </a>
+	                                </li>
+	                               
+	                            </ul>
+							</li>
+							<! -- cm -->
+							<li class="nav-item <% if (pagename === 'theloai' || pagename==='addtheloai') { %>active<% } %>">
+							<a href="#" class="nav-link nav-toggle">
+								<i class="material-icons">library_books</i>
+								<span class="title">Thể loại</span>
+								<span class="arrow"></span>
+								
+							</a>
+							<ul class="sub-menu">
+								<li class="nav-item <% if (pagename === 'addtheloai') { %>active<% } %>">
+									<a href="/admin/categories" class="nav-link ">
+										<span class="title">Thêm Thể loại cho bài viết</span>
+									</a>
+								</li>
+								<li class="nav-item <% if (pagename === 'theloai') { %>active<% } %>">
+									<a href="/admin/allcategories" class="nav-link ">
+										<span class="title">Xem tất cả Thể loại bài viết</span>
+									</a>
+								</li>
+							   
+							</ul>
+							
+						</li>
+						<! -- cm -->
+						<! -- cm -->
+							<li class="nav-item <% if (pagename === 'loaitin' || pagename==='addloaitin') { %>active<% } %>">
+							<a href="#" class="nav-link nav-toggle">
+								<i class="material-icons">assignment_turned_in</i>
+								<span class="title">Loại Tin</span>
+								<span class="arrow"></span>
+								
+							</a>
+							<ul class="sub-menu">
+								<li class="nav-item <% if (pagename === 'addloaitin') { %>active<% } %>">
+									<a href="/admin/typeofnew" class="nav-link ">
+										<span class="title">Thêm Loại Tin</span>
+									</a>
+								</li>
+								<li class="nav-item <% if (pagename === 'loaitin') { %>active<% } %>">
+									<a href="/admin/viewtypeofnew" class="nav-link ">
+										<span class="title">Xem Tất Cả Loại Tin</span>
+									</a>
+								</li>
+							   
+							</ul>
+							
+						</li>
+						<! -- cm -->
+							<li class="nav-item <% if (pagename === 'media') { %>active<% } %>">
+							<a href="#" class="nav-link nav-toggle">
+								<i class="material-icons">perm_media</i>
+								<span class="title">Media / Ảnh</span>
+								<span class="arrow"></span>
+								
+							</a>
+							<ul class="sub-menu">
+								<li class="nav-item <% if (pagename === 'media') { %>active<% } %>">
+									<a href="/admin/media" class="nav-link ">
+										<span class="title">Xem tất cả ảnh</span>
+									</a>
+								</li>
+								
+							   
+							</ul>
+							
+						</li>
+						<! -- cm -->
+						<li class="nav-item <% if (pagename === 'taikhoan' || pagename==='addtaikhoan') { %>active<% } %>">
+						<a href="#" class="nav-link nav-toggle">
+							<i class="material-icons">account_circle</i>
+							<span class="title">Tài khoản</span>
+							<span class="arrow"></span>
+							
+						</a>
+						<ul class="sub-menu">
+							
+							<li class="nav-item <% if (pagename === 'taikhoan') { %>active<% } %>">
+								<a href="/admin/accounts" class="nav-link ">
+									<span class="title">Xem tất cả tài khoản</span>
+								</a>
+							</li>
+							
+						</ul>
+						
+					</li>
+					<! -- cm -->
+					<li class="nav-item <% if (pagename === 'block' || pagename==='comment') { %>active<% } %>">
+						<a href="#" class="nav-link nav-toggle">
+							<i class="material-icons">settings</i>
+							<span class="title">Tuỳ Chọn</span>
+							<span class="arrow"></span>
+							
+						</a>
+						<ul class="sub-menu">
+							<li class="nav-item <% if (pagename === 'comment') { %>active<% } %>">
+								<a href="/admin/comments" class="nav-link ">
+									<span class="title">Xem danh sách comment</span>
+								</a>
+							</li>
+							<li class="nav-item <% if (pagename === 'block') { %>active<% } %>">
+								<a href="/admin/blockuser" class="nav-link ">
+									<span class="title">Danh Sách đã chặn User</span>
+								</a>
+							</li>
+							
+						</ul>
+						
+					</li>
+					<! -- cm -->
+	                </div>
+                </div>
+            </div>
+
+         

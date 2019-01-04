@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%include layouts/css%>
+
+<body>
+
+  <!--menu mobile-->
+  <%include layouts/menumobile%>
+  <!--page-->
+  <div class="page">
+    <div class="wrap">
+      <!--topbar-->
+      <%include layouts/topBar%>
+      <!--header-->
+
+      <%include layouts/header%>
+      <!--cols-->
+      <div class="cols">
+        <!--colleft-->
+        <div class="colleft">
+          <!--detail -->
+          <div class="box">
+            <div class="sitemap">
+              <a href="/">Home</a>
+              <span><i class="fa fa-angle-right"></i></span>
+
+              <a href="/notification"> Thông Báo</a>
+
+              
+            </div>
+            <div id="noidung">
+                
+            </div>
+            
+            <div class="paging-outer" id="phantrang">
+
+            </div>
+          </div>
+        </div>
+        <!--colright-->
+        <%include layouts/sideBar%>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <!--footer-->
+    <%include layouts/footer%>
+  </div>
+  <!--scrip file-->
+  <%include layouts/js%>
+</body>
+
+<script src="/Web/js/pages/pageNoti.js"></script>
+
+</html>

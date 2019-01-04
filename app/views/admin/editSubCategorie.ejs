@@ -1,0 +1,89 @@
+<% include layouts/header %>
+<!-- end header -->
+<!-- start page container -->
+<div class="page-container">
+    <!-- start sidebar menu -->
+    <% include layouts/sidebar %>
+    <!-- end sidebar menu -->
+    <!-- start page content -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="page-bar">
+                <div class="page-title-breadcrumb">
+                    <div class=" pull-left">
+                        <div class="page-title">
+                            <b>
+                                <%= page%></b>
+                        </div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="/">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+                        </li>
+                        <li><a class="parent-item" href="/admin/allcategories">Xem Thể Loại</a>&nbsp;<i class="fa fa-angle-right"></i>
+                        </li>
+                        <li class="active">
+                            <%= page%>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- add content here -->
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card card-topline-aqua full-wight">
+                        <div class="card-head">
+                            <header>Sửa Thể Loại</header>
+                        </div>
+                        <div class="card-body">
+
+                            <form enctype="multipart/form-data" method="POST" role="form" id="editsubform">
+                                <div class="col-lg-12 p-t-20" style="margin-top: 40px;margin-left: 50px">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-width">
+                                        <input class="mdl-textfield__input" type="text" id="text4" name="theloai" value="<%=data.subTheLoai[0].namesubTheLoai %>">
+                                        <label class="mdl-textfield__label" for="text4"><b>Nhập Tên Thể Loại</b></label>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-12 p-t-25" style="margin-top: 40px;margin-left: 50px">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-width">
+                                        <input class="mdl-textfield__input" type="text" id="text4" name="mota" value="<%=data.subTheLoai[0].motaSub%>">
+                                        <label class="mdl-textfield__label" for="text4"><b>Mô Tả</b></label>
+
+                                    </div>
+
+                                </div>
+
+                                
+                                <input type="hidden" id="idsub" name="" class="form-control" value="<%= data.subTheLoai[0].id %>">
+                                <input type="hidden" id="idmenu" name="" class="form-control" value="<%= data.id %>">
+                                <div class="col-lg-12 p-t-25" style="margin-top: 40px;margin-left: 50px">
+                                    <button type="submit" class="btn btn-circle btn-info btn-lg m-b-10" id="btneditsub">
+                                        <i class="fa fa-edit"></i> Sửa Thể Loại</button>
+                                </div>
+
+                            </form>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- add content here -->
+        </div>
+    </div>
+    <!-- end page content -->
+    <!-- start chat sidebar -->
+
+    <!-- end chat sidebar -->
+</div>
+<!-- end page container -->
+<!-- start footer -->
+<% include layouts/footer %>
+<script src="/assets/js/pageCategori.js"></script>

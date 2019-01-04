@@ -1,0 +1,146 @@
+<% include layouts/header %>
+<!-- end header -->
+<!-- start page container -->
+<div class="page-container">
+    <!-- start sidebar menu -->
+    <% include layouts/sidebar %>
+    <!-- end sidebar menu -->
+    <!-- start page content -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="page-bar">
+                <div class="page-title-breadcrumb">
+                    <div class=" pull-left">
+                        <div class="page-title">
+                            <%= page%>
+                        </div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index.html">Home</a>&nbsp;<i
+                                class="fa fa-angle-right"></i>
+                        </li>
+                        <li class="active">
+                            <%= page%>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- content -->
+            <div class="state-overview">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="overview-panel blue-bgcolor">
+                            <div class="symbol">
+                                <i class="material-icons">library_books</i>
+                            </div>
+                            <div class="value white">
+                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="<%=data.coutCate%>">
+                                    <%=data.coutCate%>
+                                </p>
+                                <p>Thể Loại</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="overview-panel blue-bgcolor">
+                            <div class="symbol">
+                                <i class="material-icons">account_circle</i>
+                            </div>
+                            <div class="value white">
+                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="<%=data.coutAcc%>">
+                                    <%=data.coutAcc%>
+                                </p>
+                                <p>Tài Khoản</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="overview-panel blue-bgcolor">
+                            <div class="symbol">
+                                <i class="material-icons">speaker_notes</i>
+                            </div>
+                            <div class="value white">
+                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="<%=data.coutPost%>">
+                                    <%=data.coutPost%>
+                                </p>
+                                <p>Bài Viết</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="overview-panel blue-bgcolor">
+                            <div class="symbol">
+                                <i class="material-icons">assignment_turned_in</i>
+                            </div>
+                            <div class="value white">
+                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="<%=data.coutNews%>">
+                                    <%=data.coutNews%>
+                                </p>
+                                <p>Loại Tin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box">
+                        <div class="card-head">
+                            <header>Chào Mừng Đến Với Trang Admin</header>
+                        </div>
+                        <div class="card-body ">
+                            <h4>
+                                <p>Website được viết bằng Nodejs bởi admin Trung Hiếu k40a</p>
+                            </h4>
+                            <a class="btn btn-info" href="/admin/addpost">Bắt đầu với bài viết mới</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="card-box">
+                        <div class="card-head">
+                            <header><a class="nav-link active show" data-toggle="tab">Gửi Thông báo Mới cho toàn User</a></header>
+                        </div>
+                        <div class="card-body ">
+
+                            <div class="form-group">
+
+
+
+
+                                <form role="form" id="formthongbao">
+
+
+                                    <div class="form-group">
+                                        <textarea id="noidung" class="form-control" rows="5" placeholder="Nhập nội dung thông báo ..."
+                                            required></textarea>
+                                    </div>
+
+
+
+                                    <button type="submit"  class="btn btn-danger"><i class="fa fa-send"></i>Gửi</button>
+                                </form>
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- add content here -->
+        </div>
+    </div>
+    <!-- end page content -->
+    <!-- start chat sidebar -->
+
+    <!-- end chat sidebar -->
+</div>
+<!-- end page container -->
+<!-- start footer -->
+<% include layouts/footer %>
+<script src="/assets/js/pageIndex.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>

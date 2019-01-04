@@ -1,0 +1,33 @@
+<nav class="menu-res hidden-lg hidden-md">
+    <div class="menu-res-inner">
+        <ul>
+            <li class="menu-item-has-children">
+                <a href="/"> Home </a>
+
+            </li>
+            <% if(dataMenu){
+                    dataMenu.forEach(a => {
+                        if(a.subLevel == 1){%>
+            <li class="menu-item-has-children">
+                <a href="<%if(a.hasSub==1){%>#<%}else{%>/category/<%=a.path%><%}%>">
+                    <%=a.nameTheLoai%><span></span></a>
+                    <% if(a.hasSub == 1){%>
+                <ul class="sub-menu">
+                    <%a.subTheLoai.forEach(b => { %>
+                    <li>
+                        <a href="/category/<%=b.path%>">
+                            <%=b.nameTheLoai%></a>
+                    </li>
+                    <%})%>
+
+                </ul>
+                <%}%>
+
+            </li>
+            <% }
+                                });
+                            }%>
+
+        </ul>
+    </div>
+</nav>

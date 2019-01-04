@@ -1,0 +1,67 @@
+<section class="grid-news">
+<div class="grid-news-inner">
+    <% if(dataTrendPost){
+        if(dataTrendPost[0]){%>
+        <div class="gn-col" >
+                    <article class="gn-item">
+                        <div class="post-meta">
+                            <span class="post-category">
+                                    <a href="<% if(dataTrendPost[0].loaitin[0]){%>/tags/<%=dataTrendPost[0].loaitin[0].path%><%}else{%>#<%}%>"><% if(dataTrendPost[0].loaitin[0]){%><%=dataTrendPost[0].loaitin[0].nameLoaiTin%><%}%></a>
+                            </span>
+                        </div>
+                        <a href="/posts/<%=dataTrendPost[0].path%>">
+                           <div class="testthumb" style="background-image: url(<%=dataTrendPost[0].thumb%>);">
+                            
+                        </div>
+                            <div class="gn-caption">
+                                <p><%=dataTrendPost[0].tieude%></p>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+        <%}%>
+        <div class="gn-col gn-col2">
+            <% if(dataTrendPost[1]){%>
+                <div class="gn-row">
+                        <article class="gn-item">
+                            <div class="post-meta">
+                                <span class="post-category">
+                                        <a href="<% if(dataTrendPost[1].loaitin[0]){%>/tags/<%=dataTrendPost[1].loaitin[0].path%><%}else{%>#<%}%>"><% if(dataTrendPost[1].loaitin[0]){%><%=dataTrendPost[1].loaitin[0].nameLoaiTin%><%}%></a>
+                                </span>
+                            </div>
+                            <a href="/posts/<%=dataTrendPost[1].path%>">
+                                <img alt="" src="<%if(dataTrendPost[1]){%><%=dataTrendPost[1].thumb%><%}%>" />
+                                <div class="gn-caption">
+                                        <p><%=dataTrendPost[1].tieude%></p>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+            <%}%>
+            <div class="gn-row gn-row2">
+                <%if(dataTrendPost[2]){%>
+                    
+                            <article class="gn-item">
+                                <div class="post-meta">
+                                    <span class="post-category">
+                                            <a href="<% if(dataTrendPost[2].loaitin[0]){%>/tags/<%=dataTrendPost[2].loaitin[0].path%><%}else{%>#<%}%>"><% if(dataTrendPost[2].loaitin[0]){%><%=dataTrendPost[2].loaitin[0].nameLoaiTin%><%}%></a>
+                                    </span>
+                                </div>
+                                <a href="/posts/<%=dataTrendPost[2].path%>">
+                                    <img alt="" src="<%if(dataTrendPost[2]){%><%=dataTrendPost[2].thumb%><%}%>" />
+                                    <div class="gn-caption">
+                                            <p><%=dataTrendPost[2].tieude%></p>
+                                    </div>
+                                </a>
+                            </article>
+                        
+                <%}%>
+            </div>
+                
+        </div>
+        
+   <% }%>
+    <div class="clearfix"></div>
+   
+</div>
+</section>

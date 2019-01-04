@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%include layouts/css%>
+
+<body>
+
+    <!--menu mobile-->
+    <%include layouts/menumobile%>
+    <!--page-->
+    <div class="page">
+        <div class="wrap">
+            <!--topbar-->
+            <%include layouts/topBar%>
+            <!--header-->
+
+            <%include layouts/header%>
+            <!--cols-->
+            <div class="cols">
+                <!--colleft-->
+                <div class="colleft">
+                    <!--detail -->
+                    <div class="box">
+                        <div class="sitemap">
+                            <a href="/">Home</a>
+
+                            <input type="hidden" id="postpath" class="form-control" value="<%=dataPost.path%>">
+
+                            <span><i class="fa fa-angle-right"></i></span>
+                            <% if(dataPost.loaitin[0]){
+                                if( dataPost.loaitin[0].theloai[0]){%>
+                            <a href="/category/<%=dataPost.loaitin[0].theloai[0].path%>">
+                                <%=dataPost.loaitin[0].theloai[0].nameTheLoai%></a>
+                            <%}
+                            }%>
+
+                        </div>
+
+                        <article class="detail">
+
+                            <input type="hidden" id="idpost" class="form-control" value="<%=dataPost._id%>">
+
+                            <h1>
+                                <%=dataPost.tieude%>
+                            </h1>
+                            <b class="fn" id="view" data-val="<%=dataPost.soluotxem%>"><i class="material-icons">
+                                    visibility
+                                </i>
+                                <%=dataPost.soluotxem%> Lượt Xem </b> |
+                            <b class="fn" id="comm"><i class="fa fa-comment"></i>
+                                <%=dataPost.count_comment%> Bình Luận</b> |
+                            <b class="fn"><i class="material-icons">
+                                    person
+                                </i>
+                                <% if(dataPost.tacgia[0]){%>
+
+                                <a class="chip chip-action" href="#"><img alt="Tác Giả" class="chip-img" src="<%= dataPost.tacgia[0].image%>">
+                                    <%= dataPost.tacgia[0].displayName%></a>
+                                <%}%></b>
+
+
+                            <br />
+                            <div class="detail-thumbnail" style="margin-top: 20px">
+                                <img alt="" src="<%=dataPost.thumb%>">
+                            </div>
+                            <div class="detail-content">
+                                <div class="fr-view">
+                                    <%- dataPost.tomtat%>
+                                    <%- dataPost.noidung%>
+
+                                </div>
+
+                            </div>
+                        </article>
+
+
+                        <div class="related-post">
+                            <div class="box-detail-caption">
+                                <span>Những Bài Viết Tương Tự</span>
+                            </div>
+                            <div class="row">
+                                <% if(allpostofNew){
+                                      allpostofNew.forEach(a => {%>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <article class="news-item-big">
+                                        <div class="post-thumb">
+                                            <a href="/posts/<%=a.path%>">
+                                                <img alt="" src="<%= a.thumb%>">
+                                            </a>
+                                        </div>
+                                        
+                                        <h3 class="post-title">
+                                            <a href="/posts/<%=a.path%>">
+                                                <%= a.tieude%></a>
+                                        </h3>
+                                        <div class="post-meta">
+                                            <span class="post-date">
+                                                <i class="ion-ios-clock">
+                                                </i>
+                                                <%= new Date(a.ngaytao).toLocaleDateString('en-GB', {
+                                                                 day: 'numeric', month: 'short', year: 'numeric'
+                                                               })%>
+                                            </span>
+                                            <span class="post-author">
+                                                <i class="ion-person"></i>
+                                                <% if(a.tacgia[0]){%>
+
+                                                <input type="hidden" id="idtacgiabaiviet" class="form-control" value="<%= a.tacgia[0]._id%>">
+
+                                                <a href="#">
+                                                    <%=a.tacgia[0].displayName%>
+                                                </a>
+                                                <%}%>
+                                            </span>
+                                        </div>
+                                    </article>
+                                </div>
+
+                                <%});
+                                 }%>
+
+                            </div>
+                        </div>
+
+
+
+                        <div id="comments" class="comments-area">
+                            <div class="detail-caption" id="countcm">
+                                <span>
+                                    <%= dataPost.count_comment%> Bình Luận </span>
+                            </div>
+                            <ol class="comment-list" id="comment-list">
+                                <% if(dataPost.comment){
+                                        dataPost.comment.forEach(a => {
+                                            if(a.user[0]){%>
+                                <li class="comment">
+                                    <article class="comment-body">
+                                        <footer class="comment-meta">
+                                            <div class="comment-author vcard">
+                                                <img alt="" src="<%=a.user[0].image%>" class="avatar">
+
+
+
+                                                <b class="fn"><a href="#">
+                                                        <%=a.user[0].displayName%>&nbsp</a>
+
+                                                </b>
+                                                <% if(a.user[0].role == 'admin'){%>
+                                                <span class="badge" style="background-color: yellow"><i class="fa fa-diamond"></i>&nbsp
+                                                    <%= a.user[0].role%></span>
+                                                <%}else{%>
+                                                <span class="badge"><i class="fa fa-user"></i>&nbsp
+                                                    <%= a.user[0].role%></span>
+                                                <%}%>
+
+                                            </div>
+                                            <div class="comment-metadata">
+                                                <a href="#">
+
+
+
+                                                    <%= moment(new Date(a.ngaytao )).fromNow()%>
+
+
+                                                </a>
+                                            </div>
+                                        </footer>
+                                        <div class="comment-content">
+                                            <p>
+                                                <%= a.NoiDung%>
+                                            </p>
+                                        </div>
+
+
+
+                                        <% if(accData){%>
+
+                                        <div class="reply"><button class="btn btn-sm btn-info" id="rep"><i class="material-icons">reply</i></div>
+                                        <div class="comment-respond" id="formRep" style="display: none">
+                                            <div class="row">
+                                                <div class="col-md-2 col-sm-4 col-xs-4">
+                                                    <div class="field-item">
+
+                                                        <img src="<%=accData.image%>" class="img-responsive" alt="Image"
+                                                            width="85" height="85">
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10 col-sm-10 col-xs-10">
+
+                                                    <form role="form" id="formRepcomment">
+
+
+                                                        <div class="form-group">
+                                                            <p class="field-caption">
+                                                                <%= accData.displayName%> <span></span>
+                                                            </p>
+                                                            <input type="hidden" id="idusercomment" class="form-control"
+                                                                value="<%=a.user[0].id%>">
+                                                            <input type="hidden" id="idcomment" class="form-control"
+                                                                value="<%=a._id%>">
+                                                            <textarea type="text" class="form-control" id="noidungRepbinhluan"
+                                                                placeholder="Nội dung trả lời" required></textarea>
+                                                        </div>
+
+
+
+                                                        <button type="submit" class="btn btn-dark btn-sm">Trả lời</button>
+                                                    </form>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <%}%>
+
+                                    </article>
+                                    <% if(a.reply){
+                                                    a.reply.forEach(b => {%>
+                                    <ol class="children" style="margin-left: 40px">
+                                        <li class="comment even depth-2 parent">
+                                            <article class="comment-body">
+                                                <footer class="comment-meta">
+                                                    <div class="comment-author vcard">
+                                                        <img alt="" src="<%=b.user[0].image%>" class="avatar">
+                                                        <b class="fn"><a href="#">
+                                                                <%=b.user[0].displayName%> </a></b>
+                                                        <% if(b.user[0].role == 'admin'){%>
+                                                        <span class="badge" style="background-color: yellow"><i class="fa fa-diamond"></i>&nbsp
+                                                            <%= b.user[0].role%></span>
+                                                        <%}else{%>
+                                                        <span class="badge"><i class="fa fa-user"></i>&nbsp
+                                                            <%= b.user[0].role%></span>
+                                                        <%}%>
+                                                    </div>
+                                                    <div class="comment-metadata">
+                                                        <a href="#">
+                                                            <%= moment(new Date(b.ngaytao )).fromNow()%>
+                                                        </a>
+                                                    </div>
+                                                </footer>
+                                                <div class="comment-content">
+                                                    <p>
+                                                        <%= b.NoiDung%>
+                                                    </p>
+                                                </div>
+
+                                            </article>
+                                        </li>
+                                    </ol>
+                                    <%});
+                                                }%>
+
+                                </li>
+                                <%}});
+                                }%>
+
+                            </ol>
+                        </div>
+                        <!--comment form-->
+                        <div id="respond" class="comment-respond">
+                            <h3 id="reply-title" class="comment-reply-title">
+                                <span>Bình Luận Bài Viết</span> <small>
+                                </small>
+                            </h3>
+                            <% if(accData){%>
+                            <input type="hidden" id="iduser" class="form-control" value="<%=accData._id%>">
+                            <form role="form" class="comment-form" id="formComment">
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-2 col-xs-2">
+                                        <div class="field-item">
+
+                                            <img src="<%=accData.image%>" class="img-responsive" alt="Image">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10 col-sm-10 col-xs-10">
+                                        <div class="field-item">
+                                            <p class="field-caption">
+                                                <%= accData.displayName%> <span></span>
+                                            </p>
+                                            <textarea required id="noidungbinhluan" name="comment" aria-required="true"
+                                                placeholder="Nội dung bình luận" rows="10"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="form-submit">
+                                    <input type="submit" class="my-btn my-btn-dark" value="Bình Luận">
+                                </p>
+                            </form>
+                            <% }else{%>
+
+                            <div class="alert alert-danger">
+
+                                <strong>Thông báo!</strong> Vui lòng đăng nhập để bình luận bài viết
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        Đăng Nhập
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+
+
+                                        <a class="dropdown-item" href="/user/auth/google">
+
+                                            <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-google-plus"></i>
+                                                Đăng nhập với Google</button>
+
+
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+
+                                            <button type="button" class="btn btn-sm btn-facebook"><i class="fa fa-facebook-f"></i>
+                                                Đăng nhập với Facebook</button>
+
+
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <%}%>
+                        </div>
+                    </div>
+                </div>
+                <!--colright-->
+                <%include layouts/sideBar%>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!--footer-->
+
+
+        <%include layouts/footer%>
+    </div>
+    <!--scrip file-->
+    <%include layouts/js%>
+</body>
+
+
+<script src="/Web/js/pages/pagePost.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
+
+</html>

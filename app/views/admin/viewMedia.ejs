@@ -1,0 +1,85 @@
+<% include layouts/header %>
+<!-- end header -->
+<!-- start page container -->
+<div class="page-container">
+    <!-- start sidebar menu -->
+    <% include layouts/sidebar %>
+    <!-- end sidebar menu -->
+    <!-- start page content -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="page-bar">
+                <div class="page-title-breadcrumb">
+                    <div class=" pull-left">
+                        <div class="page-title">
+                            <%= page%>
+                        </div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="/">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+                        </li>
+                        <li class="active">
+                            <%= page%>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- add content here -->
+
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-topline-aqua">
+                                <div class="card-head">
+                                    <header>Tất Cả Bài Viết</header>
+                                    <div class="tools">
+                                        <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                                        <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                                        <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                                    </div>
+                                </div>
+                                <div class="card-body ">
+                                    <div class="row p-b-20">
+                                        <div class="col-md-6 col-sm-6 col-6">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                      
+                                    <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
+
+                                    <% if(data){ data.forEach(currentItem => { %>
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20"> 
+                                            <a href="/uploads/<%=currentItem%>" data-sub-html="Hình Ảnh Trong bài viết"> 
+                                                <img class="img-fluid img-thumbnail" src="/uploads/<%=currentItem%>" alt=""> 
+                                            </a> 
+                                        </div>
+                                   <% });} %>
+                                   
+                                   
+                               
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- add content here -->
+        </div>
+    </div>
+    <!-- end page content -->
+    <!-- start chat sidebar -->
+
+    <!-- end chat sidebar -->
+</div>
+<!-- end page container -->
+<!-- start footer -->
+<% include layouts/footer %>
+<script src="/assets/js/pageNew.js"></script>

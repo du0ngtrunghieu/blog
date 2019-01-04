@@ -1,0 +1,263 @@
+<% include layouts/header %>
+<!-- end header -->
+<!-- start page container -->
+<div class="page-container">
+    <!-- start sidebar menu -->
+    <% include layouts/sidebar %>
+    <!-- end sidebar menu -->
+    <!-- start page content -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="page-bar">
+                <div class="page-title-breadcrumb">
+                    <div class=" pull-left">
+                        <div class="page-title">
+                            <%= page%>
+                        </div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="/">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                        </li>
+                        <li class="active">
+                            <%= page%>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- add content here -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card card-topline-aqua">
+                        <div class="card-head">
+                            <header>Vui lòng điền đầy đủ !!</header>
+                        </div>
+                        <form enctype="multipart/form-data" action="#" method="POST" id="form">
+                            <div class="card-body row">
+                                <div class="col-lg-8 p-t-20" id="thongbao">
+
+                                </div>
+                                <div class="col-lg-6 p-t-20">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-width">
+                                        <input autocomplete='off' class="mdl-textfield__input" type="text" id="text4" name="tieude">
+                                        <label class="mdl-textfield__label" for="text4"><b>Nhập tiêu đề bài viết</b></label>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-12 p-t-20">
+                                    <div class="mdl-textfield mdl-js-textfield txt-full-width">
+                                        <textarea autocomplete='off' class="mdl-textfield__input" rows="5" name="tomtat" id="tomtat"></textarea>
+                                        <label class="mdl-textfield__label" for="text7"><b>Tóm Tát Bài Viết</b></label>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-12 p-t-20">
+                                    <div class="mdl-textfield mdl-js-textfield txt-full-width">
+                                        <textarea  autocomplete='off' class="mdl-textfield__input" rows="5" name="noidung" id="noidung"></textarea>
+                                        <label class="mdl-textfield__label" for="text7"><b>Nội Dung bài viết</b></label>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-12 margin-top-20">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height select-width">
+                                        <input autocomplete='off' class="mdl-textfield__input" type="text" id="sample2" name="theloai"
+                                            readonly tabIndex="-1">
+                                        <label for="sample2" class="pull-right margin-0">
+                                            <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                        </label>
+                                        <label for="sample2" class="mdl-textfield__label"><b>Thuộc loại tin nào ?</b></label>
+
+                                        <ul data-mdl-for="sample2" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                            <% if(data) {
+                                                        data.forEach(currentItem => {  %>
+
+                                            <li class="mdl-menu__item" data-val="<%=currentItem._id%>">
+
+                                                <b>
+                                                    <%=currentItem.nameLoaiTin %></b>
+
+
+                                            </li>
+                                            <% }) 
+                                                                                    }%>
+
+
+                                        </ul>
+                                    </div>
+
+
+
+                                </div>
+
+
+                                <div class="col-lg-8 p-t-20">
+                                    <img class="img-fluid img-thumbnail" id="imgId" src="" style="width: 750px;height: 438px;" >
+                                    <input autocomplete='off' type="file" id='inputId' accept="image/gif, image/jpeg, image/png">
+
+                                </div>
+
+                               
+                                <div class="col-lg-12 p-t-20">
+
+                                    <button type="submit" class="btn btn-circle btn-info btn-lg m-b-10" id="thembaiviet">
+                                        <i class="fa fa-plus"></i>Thêm bài viết</button>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- add content here -->
+        </div>
+    </div>
+    <!-- end page content -->
+    <!-- start chat sidebar -->
+
+    <!-- end chat sidebar -->
+</div>
+<!-- end page container -->
+<!-- start footer -->
+<% include layouts/footer %>
+
+
+<script>
+    $(function () {
+        $.FroalaEditor.DefineIcon('buttondown', {
+            NAME: 'plus'
+        });
+        $.FroalaEditor.RegisterCommand('buttondown', {
+            title: 'Button Download',
+            focus: true,
+            undo: true,
+            refreshAfterCallback: true,
+            callback: function () {
+                this.html.insert('<div class="wrapper1"><button type="button" class="btn btn-info"><a href="" target="_blank" rel="noopener noreferrer"><i class="material-icons">file_download</i> Download</a></button></div>');
+             
+            }
+        });
+        $.FroalaEditor.DefineIcon('insertHTML', {
+            NAME: 'terminal'
+        });
+        $.FroalaEditor.RegisterCommand('insertHTML', {
+            title: 'highlight-code',
+            focus: false,
+            undo: true,
+           
+            callback: function () {
+                this.html.insert('<pre><code class="html">noidungcode</code></pre>');
+              
+            }
+        });
+        $('#noidung')
+
+            .froalaEditor({
+                // Set the file upload URL.
+                imageUploadURL: 'imguploads',
+                imageUploadParams: {
+                    id: 'my_editor'
+                },
+
+                imageAllowedTypes: ['jpeg', 'jpg', 'png'],
+
+                toolbarButtons: ['fullscreen',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strikeThrough',
+                    'subscript', 'superscript',
+                    '|', 'fontFamily',
+                    'fontSize', 'color',
+                    'inlineStyle', 'paragraphStyle',
+                    '|', 'paragraphFormat', 'align',
+                    'formatOL', 'formatUL', 'outdent', 'indent',
+                    'quote', '-', 'insertLink', 'insertImage', 'insertVideo',
+                    'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters',
+                    'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'help', 'html',
+                    '|', 'undo', 'redo', 'insertHTML','buttondown'
+                ]
+
+            }).on('froalaEditor.image.uploaded', function (e, editor, response) {
+
+
+            }).on('froalaEditor.image.beforeUpload', function (e, editor, images) {
+                // Return false if you want to stop the image upload.
+            })
+            .on('froalaEditor.image.uploaded', function (e, editor, response) {
+
+            })
+            .on('froalaEditor.image.inserted', function (e, editor, $img, response) {
+
+
+            })
+            .on('froalaEditor.image.replaced', function (e, editor, $img, response) {
+                // Image was replaced in the editor.
+            })
+        $('#tomtat').froalaEditor({
+            toolbarButtons: ['fullscreen',
+                'bold',
+                'italic',
+                'underline',
+                'strikeThrough',
+                'subscript', 'superscript',
+                '|', 'fontFamily',
+                'fontSize', ,
+                'inlineStyle', 'paragraphStyle',
+                'align',
+
+                '|', 'emoticons', 'specialCharacters',
+                'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'help', 'html',
+                '|', 'undo', 'redo',
+            ]
+        })
+
+    });
+</script>
+<script>
+document.getElementById("inputId").onchange = function () {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("imgId").src = e.target.result;
+        cropper.replace(e.target.result);
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+};
+var MIN_WIDTH  = 1000,
+    MIN_HEIGHT = 550;
+
+    const image = document.getElementById('imgId');
+    const cropper = new Cropper(image, {
+        aspectRatio: (MIN_WIDTH/MIN_HEIGHT),
+       
+        checkOrientation: true,
+        zoomable: false,
+        viewMode: 0,
+    crop(event) {
+      console.log(event.detail.x);
+      console.log(event.detail.y);
+      console.log(event.detail.width);
+      console.log(event.detail.height);
+      console.log(event.detail.rotate);
+      console.log(event.detail.scaleX);
+      console.log(event.detail.scaleY);
+       
+
+    
+        
+   
+    },
+  });
+
+  
+   
+    
+
+                                                </script>
+<script src="/assets/js/forme.js"></script>

@@ -1,0 +1,150 @@
+<% include layouts/header %>
+<!-- end header -->
+<!-- start page container -->
+<div class="page-container">
+    <!-- start sidebar menu -->
+    <% include layouts/sidebar %>
+    <!-- end sidebar menu -->
+    <!-- start page content -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="page-bar">
+                <div class="page-title-breadcrumb">
+                    <div class=" pull-left">
+                        <div class="page-title">
+                            <b>
+                                <%= page%></b>
+                        </div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="/">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+                        </li>
+                        <li><a class="parent-item" href="/admin/allcategories">Xem Thể Loại</a>&nbsp;<i class="fa fa-angle-right"></i>
+                        </li>
+                        <li class="active">
+                            <%= page%>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- add content here -->
+
+
+            <div class="row" id="testload">
+                <div class="col-md-12">
+                <div class="loader loader-default" id="load"></div>
+                    <div class="row">
+                        <div class="col-sm-6" id="conten">
+                            <div class="card card-topline-aqua" id="nextconten">
+                                <div class="card-head">
+                                    <header>Thêm Thể Loại</header>
+                                </div>
+                                <div class="card-body">
+
+                                    <form enctype="multipart/form-data" method="POST" role="form" id="addform">
+                                        <div class="col-lg-12 margin-top-20">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-width">
+                                                <input class="mdl-textfield__input" type="text" id="text4" name="theloai">
+                                                <label class="mdl-textfield__label" for="text4"><b>Nhập Tên Thể Loại</b></label>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-lg-12 margin-top-20">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-width">
+                                                <input class="mdl-textfield__input" type="text" id="text4" name="mota">
+                                                <label class="mdl-textfield__label" for="text4"><b>Mô Tả</b></label>
+
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="col-lg-12 margin-top-20">
+                                            <label><b>Thuộc Thể Loại không ?</b></label>
+                                            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-8">
+                                                <input type="checkbox" id="switch-8" class="mdl-switch__input" uncheck>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-12 margin-top-20" id="subtheloai" style="display: none">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height select-width">
+                                                <select class="custom-select" id="sample2">
+                                                        <% if( data) {
+                                                            data.forEach(currentItem => {
+                                                                if(currentItem.subLevel ==1){%>
+                                                                    <option value="<%= currentItem._id%>""><b><%= currentItem.nameTheLoai%></b></option>
+                                 
+
+                                                                <% } 
+                                                              
+                                                            });
+                                                  
+                                                     }%>
+                                                   
+                                                   
+                                                    
+                                                  </select>
+                                                   
+
+
+
+
+
+                                               
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <div class="col-lg-12 margin-top-20">
+                                            <button type="submit" class="btn btn-circle btn-info btn-lg m-b-10" id="thembaiviet">
+                                                <i class="fa fa-plus"></i>Lưu Lại</button>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card card-topline-aqua">
+                                <div class="card-head">
+                                    <header>Tất Cả Thể Loại</header>
+                                </div>
+                                <div class="card-body">
+                                    <div class="col-lg-12 margin-top-20">
+                                        <div id="cate" class=""></div>
+                                    </div>
+                                    <div class="col-lg-12 margin-top-20">
+                                        <button class="btn btn-info btn disabled" id="btnedit-cate">
+                                            <i class="fa fa-pencil "></i>
+                                        </button>
+                                        <button class="btn btn-danger btn disabled" id="btndel-cate">
+                                            <i class="fa fa-trash-o "></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- add content here -->
+        </div>
+    </div>
+    <!-- end page content -->
+    <!-- start chat sidebar -->
+
+    <!-- end chat sidebar -->
+</div>
+<!-- end page container -->
+<!-- start footer -->
+<% include layouts/footer %>
+<script src="/assets/js/pageCategori.js"></script>

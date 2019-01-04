@@ -1,0 +1,494 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+
+<%include layouts/css%>
+<body>
+    <!--preload-->
+    
+    <!--menu mobile-->
+    <%include layouts/menumobile%>
+    <!--page-->
+    <div class="page">
+        <div class="wrap">
+            <!--topbar-->
+            <%include layouts/topBar%>
+            <!--header-->
+            <%include layouts/header%>
+            
+           <!--- TrendPost -->
+           <%include layouts/trendpost%>
+            <!--cols-->
+            <div class="cols">
+                <!--colleft-->
+                <div class="colleft">
+                    <!--box-->
+                    <% if(dataconten){
+                        if(dataconten[0]){%>
+                            <div class="box">
+                                    <div class="box-caption">
+                                        <h2><a href="/tags/<%=dataconten[0].path%>"><%=dataconten[0].nameLoaiTin%></a></h2>
+                                    </div>
+                                    <% if(dataconten[0].baiviet){%>
+                                        <div class="row row-fix">
+                                        
+                                                <div class="col-md-6 col-sm-6 col-xs-12 col-fix">
+                                                    <% if(dataconten[0].baiviet[0]){%>
+                                                        <article class="news-item-big">
+                                                                <div class="post-thumb">
+                                                                   
+                                                                    <a href="/posts/<%=dataconten[0].baiviet[0].path%>">
+                                                                        <img alt="" src="<%=dataconten[0].baiviet[0].thumb%>" >
+                                                                    </a>
+                                                                </div>
+                                                                <h3 class="post-title">
+                                                                    <a href="/posts/<%=dataconten[0].baiviet[0].path%>"><%=dataconten[0].baiviet[0].tieude%></a>
+                                                                </h3>
+                                                                <div class="post-meta">
+                                                                    <span class="post-date">
+                                                                        <i class="ion-ios-clock">
+                                                                        </i>
+                                                                      <%=moment(dataconten[0].baiviet[0].ngaytao).fromNow(); %>
+                                                                        
+                                                                    </span>
+                                                                    <span class="post-author">
+                                                                        <i class="ion-person"></i>
+                                                                        <a href="#">
+                                                                                <% if(dataconten[0].baiviet[0].tacgia[0]){%>
+                                                                                    <%=dataconten[0].baiviet[0].tacgia[0].displayName%>
+                                                                                   <%} %>
+                                                                                
+                                                                        </a>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="post-des">
+                                                                    <p><%-dataconten[0].baiviet[0].tomtat%></p>
+                                                                </div>
+                                                            </article>
+                                                    <%}%>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 col-fix">
+                                                    <ul class="list-news list-news-right">
+                                                       <%if(dataconten[0].baiviet[1]){%>
+                                                        <li>
+                                                                <div class="post-thumb">
+                                                                        <a href="/posts/<%=dataconten[0].baiviet[1].path%>">
+                                                                            <img alt="" src="<%=dataconten[0].baiviet[1].thumb%>" width="70" height="60">
+                                                                        </a>
+                                                                </div>
+                                                                <h3> <a href="/posts/<%=dataconten[0].baiviet[1].path%>"><%=dataconten[0].baiviet[1].tieude%></a></h3>
+                                                            </li>
+                                                       <%}%>
+                                                       <%if(dataconten[0].baiviet[2]){%>
+                                                        <li>
+                                                                <div class="post-thumb">
+                                                                        <a href="/posts/<%=dataconten[0].baiviet[2].path%>">
+                                                                            <img alt="" src="<%=dataconten[0].baiviet[2].thumb%>" width="70" height="60">
+                                                                        </a>
+                                                                </div>
+                                                                <h3> <a href="/posts/<%=dataconten[0].baiviet[2].path%>"><%=dataconten[0].baiviet[2].tieude%></a></h3>
+                                                            </li>
+                                                       <%}%>
+                                                       <%if(dataconten[0].baiviet[3]){%>
+                                                        <li>
+                                                                <div class="post-thumb">
+                                                                        <a href="/posts/<%=dataconten[0].baiviet[3].path%>">
+                                                                            <img alt="" src="<%=dataconten[0].baiviet[3].thumb%>" width="70" height="60">
+                                                                        </a>
+                                                                </div>
+                                                                <h3> <a href="/posts/<%=dataconten[0].baiviet[3].path%>"><%=dataconten[0].baiviet[3].tieude%></a></h3>
+                                                            </li>
+                                                       <%}%>
+                                                       <%if(dataconten[0].baiviet[4]){%>
+                                                        <li>
+                                                                <div class="post-thumb">
+                                                                        <a href="/posts/<%=dataconten[0].baiviet[4].path%>">
+                                                                            <img alt="" src="<%=dataconten[0].baiviet[4].thumb%>" width="70" height="60">
+                                                                        </a>
+                                                                </div>
+                                                                <h3> <a href="/posts/<%=dataconten[0].baiviet[4].path%>"><%=dataconten[0].baiviet[4].tieude%></a></h3>
+                                                            </li>
+                                                       <%}%>
+                                                    </ul>
+                                                </div>
+                                            </div>         
+                                    <%}%>
+                                   
+                                </div>
+                        <%}
+                            if(dataconten[1]){%>
+                                <div class="box">
+                                        <div class="box-caption">
+                                                <h2><a href="/tags/<%=dataconten[1].path%>"><%=dataconten[1].nameLoaiTin%></a></h2>
+                                        </div>
+                                        <div class="owl-category-wrap">
+                                            <div class="owl-carousel  owl-category">
+                                                <%if(dataconten[1].baiviet){
+                                                    dataconten[1].baiviet.forEach(a => {%>
+                                                        <div>
+                                                                <article>
+                                                                    <div class="post-thumb">
+                                                                        <a href="/posts/<%=a.path%>">
+                                                                            <span class="post-format"> <i class="fa fa-camera"></i></span>
+                                                                            <img alt="" src="<%=a.thumb%>">
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="owl-category-caption">
+                                                                        <h3 class="post-title">
+                                                                            <a href="/posts/<%=a.path%>"><%= a.tieude%></a>
+                                                                        </h3>
+                                                                        <div class="post-meta">
+                                                                            <span class="post-date">
+                                                                                <i class="ion-ios-clock">
+                                                                                </i>
+                                                                                <%=moment(dataconten[0].baiviet[0].ngaytao).startOf('year').fromNow(); %>
+                                                                              
+                                                                            </span>
+                                                                            <span class="post-author">
+                                                                                <i class="ion-person"></i>
+                                                                                <a href="#">
+                                                                                        <% if(a.tacgia[0]){%>
+                                                                                            <%=a.tacgia[0].displayName%>
+                                                                                           <%} %>
+                                                                                </a>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </article>
+                                                            </div>
+                                                   <%});
+                                                }%>
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                            <%}%>
+                            <!--box-->
+                            <div class="row row-fix">
+                           <% if(dataconten[2]){%>
+                                    
+                                                <div class="col-md-6 col-sm-6 col-xs-12 col-fix">
+                                                    <div class="box">
+                                                        <div class="box-caption">
+                                                                <h2><a href="/tags/<%=dataconten[2].path%>"><%=dataconten[2].nameLoaiTin%></a></h2>
+                                                        </div>
+                                                        <% if(dataconten[2].baiviet[0]){%>
+                                                            <article class="news-item-big">
+                                                                    <div class="post-thumb">
+                                                                        <a href="/posts/<%=dataconten[2].baiviet[0].path%>">
+                                                                            <span class="post-format"></span>
+                                                                            <img alt="" src="<%=dataconten[2].baiviet[0].thumb%>">
+                                                                        </a>
+                                                                    </div>
+                                                                    <h3 class="post-title">
+                                                                        <a href="/posts/<%=dataconten[2].baiviet[0].path%>"><%=dataconten[2].baiviet[0].tieude%></a>
+                                                                    </h3>
+                                                                    <div class="post-meta">
+                                                                        <span class="post-date">
+                                                                            <i class="ion-ios-clock">
+                                                                            </i>
+                                                                            <%=moment(dataconten[2].baiviet[0].ngaytao).fromNow(); %>
+                                                                           
+                                                                        </span>
+                                                                        <span class="post-author">
+                                                                            <i class="ion-person"></i>
+                                                                            <a href="#">
+                                                                                    <% if(dataconten[2].baiviet[0].tacgia[0]){%>
+                                                                                        <%=dataconten[2].baiviet[0].tacgia[0].displayName%>
+                                                                                       <%} %>
+                                                                                   
+                                                                            </a>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="post-des">
+                                                                            <%-dataconten[2].baiviet[0].tomtat%>
+                                                                    </div>
+                                                                </article>
+                                                        <%}%>
+                                                       
+                                                        <ul class="list-news">
+                                                                <%if(dataconten[2].baiviet[1]){%>
+                                                                    <li>
+                                                                            <div class="post-thumb">
+                                                                                <a href="/posts/<%=dataconten[2].baiviet[1].path%>">
+                                                                                    <img alt="" src="<%=dataconten[2].baiviet[1].thumb%>" width="70" height="60">
+                                                                                </a>
+                                                                            </div>
+                                                                            <h3>
+                                                                                <a href="/posts/<%=dataconten[2].baiviet[1].path%>"><%=dataconten[2].baiviet[1].tieude%></a>
+                                                                            </h3>
+                                                                        </li>
+                                                                    <%}%>
+                                                            
+                                                                    <%if(dataconten[2].baiviet[2]){%>
+                                                                        <li>
+                                                                                <div class="post-thumb">
+                                                                                    <a href="/posts/<%=dataconten[2].baiviet[2].path%>">
+                                                                                        <img alt="" src="<%=dataconten[2].baiviet[2].thumb%>" width="70" height="60">
+                                                                                    </a>
+                                                                                </div>
+                                                                                <h3>
+                                                                                    <a href="/posts/<%=dataconten[2].baiviet[2].path%>"><%=dataconten[2].baiviet[2].tieude%></a>
+                                                                                </h3>
+                                                                            </li>
+                                                                        <%}%>
+                                                                        <%if(dataconten[2].baiviet[3]){%>
+                                                                            <li>
+                                                                                    <div class="post-thumb">
+                                                                                        <a href="/posts/<%=dataconten[2].baiviet[3].path%>">
+                                                                                            <img alt="" src="<%=dataconten[2].baiviet[3].thumb%>" width="70" height="60">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                    <h3>
+                                                                                        <a href="/posts/<%=dataconten[2].baiviet[3].path%>"><%=dataconten[2].baiviet[3].tieude%></a>
+                                                                                    </h3>
+                                                                                </li>
+                                                                            <%}%>
+                                                                            <%if(dataconten[2].baiviet[4]){%>
+                                                                                <li>
+                                                                                        <div class="post-thumb">
+                                                                                            <a href="/posts/<%=dataconten[2].baiviet[4].path%>">
+                                                                                                <img alt="" src="<%=dataconten[2].baiviet[4].thumb%>" width="70" height="60">
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <h3>
+                                                                                            <a href="/posts/<%=dataconten[2].baiviet[4].path%>"><%=dataconten[2].baiviet[4].tieude%></a>
+                                                                                        </h3>
+                                                                                    </li>
+                                                                                <%}%>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                
+                                            
+                                         <% } 
+                                         if(dataconten[3]){%>
+                                            <div class="col-md-6 col-sm-6 col-xs-12 col-fix">
+                                                    <div class="box">
+                                                        <div class="box-caption">
+                                                                <h2><a href="/tags/<%=dataconten[3].path%>"><%=dataconten[3].nameLoaiTin%></a></h2>
+                                                        </div>
+                                                        <% if(dataconten[3].baiviet[0]){%>
+                                                            <article class="news-item-big">
+                                                                    <div class="post-thumb">
+                                                                        <a href="/posts/<%=dataconten[3].baiviet[0].path%>">
+                                                                            <span class="post-format"></span>
+                                                                            <img alt="" src="<%=dataconten[3].baiviet[0].thumb%>">
+                                                                        </a>
+                                                                    </div>
+                                                                    <h3 class="post-title">
+                                                                        <a href="/posts/<%=dataconten[3].baiviet[0].path%>"><%=dataconten[3].baiviet[0].tieude%></a>
+                                                                    </h3>
+                                                                    <div class="post-meta">
+                                                                        <span class="post-date">
+                                                                            <i class="ion-ios-clock">
+                                                                            </i>
+                                                                            <%=moment(dataconten[3].baiviet[0].ngaytao).fromNow(); %>
+                                                                           
+                                                                        </span>
+                                                                        <span class="post-author">
+                                                                            <i class="ion-person"></i>
+                                                                            <a href="#">
+                                                                                    <% if(dataconten[3].baiviet[0].tacgia[0]){%>
+                                                                                        <%=dataconten[3].baiviet[0].tacgia[0].displayName%>
+                                                                                       <%} %>
+                                                                                    
+                                                                            </a>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="post-des">
+                                                                            <%-dataconten[3].baiviet[0].tomtat%>
+                                                                    </div>
+                                                                </article>
+                                                        <%}%>
+                                                       
+                                                        <ul class="list-news">
+                                                                <%if(dataconten[3].baiviet[1]){%>
+                                                                    <li>
+                                                                            <div class="post-thumb">
+                                                                                <a href="/posts/<%=dataconten[3].baiviet[1].path%>">
+                                                                                    <img alt="" src="<%=dataconten[3].baiviet[1].thumb%>" width="70" height="60">
+                                                                                </a>
+                                                                            </div>
+                                                                            <h3>
+                                                                                <a href="/posts/<%=dataconten[3].baiviet[1].path%>"><%=dataconten[3].baiviet[1].tieude%></a>
+                                                                            </h3>
+                                                                        </li>
+                                                                    <%}%>
+                                                            
+                                                                    <%if(dataconten[3].baiviet[2]){%>
+                                                                        <li>
+                                                                                <div class="post-thumb">
+                                                                                    <a href="/posts/<%=dataconten[3].baiviet[2].path%>">
+                                                                                        <img alt="" src="<%=dataconten[3].baiviet[2].thumb%>" width="70" height="60">
+                                                                                    </a>
+                                                                                </div>
+                                                                                <h3>
+                                                                                    <a href="/posts/<%=dataconten[3].baiviet[2].path%>"><%=dataconten[3].baiviet[2].tieude%></a>
+                                                                                </h3>
+                                                                            </li>
+                                                                        <%}%>
+                                                                        <%if(dataconten[3].baiviet[3]){%>
+                                                                            <li>
+                                                                                    <div class="post-thumb">
+                                                                                        <a href="/posts/<%=dataconten[3].baiviet[3].path%>">
+                                                                                            <img alt="" src="<%=dataconten[3].baiviet[3].thumb%>" width="70" height="60">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                    <h3>
+                                                                                        <a href="/posts/<%=dataconten[3].baiviet[3].path%>"><%=dataconten[3].baiviet[3].tieude%></a>
+                                                                                    </h3>
+                                                                                </li>
+                                                                            <%}%>
+                                                                            <%if(dataconten[3].baiviet[4]){%>
+                                                                                <li>
+                                                                                        <div class="post-thumb">
+                                                                                            <a href="/posts/<%=dataconten[3].baiviet[4].path%>">
+                                                                                                <img alt="" src="<%=dataconten[3].baiviet[4].thumb%>" width="70" height="60">
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <h3>
+                                                                                            <a href="/posts/<%=dataconten[3].baiviet[4].path%>"><%=dataconten[3].baiviet[4].tieude%></a>
+                                                                                        </h3>
+                                                                                    </li>
+                                                                                <%}%>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                         <%}%>
+                        </div>
+                        
+                    <%}%>
+                    
+                    
+                    
+                    
+                    <!--box-->
+                    <div class="box">
+                        <div class="box-caption">
+                            <h2><a href="category.html">Tất Cả Bài Viết</a></h2>
+                        </div>
+                        <div class="list-item-category" id="noidung">
+                              
+                            </div>
+                            <div class="paging-outer" id="phantrang">
+                               
+                            </div>
+                    </div>
+                </div>
+                <!--colright-->
+                <%include layouts/sideBar%>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!--footer-->
+        <%include layouts/footer%>
+    </div>
+    <style type="text/css">
+        .nd-carrer {
+            width: 300px;
+            height: auto;
+            position: fixed;
+            bottom: 0px;
+            right: 0px;
+            right: 0px;
+            padding: 15px;
+            text-align: center;
+            background-color: #fff;
+            background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+            transition: all ease 0.4s;
+            transform: translateY(100%);
+            z-index: -1;
+            opacity: 0;
+        }
+
+        .nd-carrer.show-nd-carrer {
+            transform: translateY(0%);
+            z-index: 999;
+            opacity: 1;
+        }
+
+        .nd-carrer-inner {
+
+            border: 1px dashed rgba(255, 255, 255, 0.7);
+            padding: 20px 10px;
+            position: relative;
+        }
+
+        .nd-carrer-close {
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            line-height: 20px;
+            text-align: center;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all ease 1s;
+        }
+
+        .nd-carrer-close:hover {
+            background-color: red;
+            color: #fff;
+        }
+
+        .nd-carrer .nd-carrer-icon {
+            text-align: center;
+            padding: 10px 0px 10px 0px;
+            
+        }
+
+        .nd-carrer .nd-carrer-icon img {
+            max-width: 134px;
+        }
+
+        .nd-carrer p {
+            font-family: arial;
+            font-weight: normal;
+            font-size: 15px;
+            color: rgb(14, 13, 13);
+            margin: 0px 0px 10px 0px;
+            text-align: center;
+        }
+
+        .nd-carrer a {
+            font-size: 15px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .nd-carrer a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+    <div class="nd-carrer">
+        <div class="nd-carrer-inner">
+            <div class="nd-carrer-close">x</div>
+            <div class="nd-carrer-icon">
+                    
+                <img alt="" src="/Web/images/logo.png" />
+                        
+            </div>
+            <p>
+                Chào Mừng bạn đến với website của tôi . Website đang phát triển
+
+                <br/>Nếu gặp bất cứ lỗi gì vui lòng gửi vào mail để khắc phục lỗi sớm nhất
+                <br/> Xin cám ơn :))
+                
+            </p>
+            <a href="mailto:trunghieuk40@gmail.com">Email: <span>trunghieuk40@gmail.com</span></a>
+        </div>
+    </div>
+    <!--scrip file-->
+    <%include layouts/js%>
+</body>
+
+<script src="/Web/js/pages/pageIndex.js"></script>
+
+</html>

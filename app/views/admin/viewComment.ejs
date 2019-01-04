@@ -1,0 +1,222 @@
+<% include layouts/header %>
+<!-- end header -->
+<!-- start page container -->
+<div class="page-container">
+     <!-- start sidebar menu -->
+     <% include layouts/sidebar %>
+     <!-- end sidebar menu -->
+     <!-- start page content -->
+     <div class="page-content-wrapper">
+          <div class="page-content">
+               <div class="page-bar">
+                    <div class="page-title-breadcrumb">
+                         <div class=" pull-left">
+                              <div class="page-title">
+                                   <%= page%>
+                              </div>
+                         </div>
+                         <ol class="breadcrumb page-breadcrumb pull-right">
+                              <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="/">Dashboard</a>&nbsp;<i
+                                        class="fa fa-angle-right"></i>
+                              </li>
+                              <li class="active">
+                                   <%= page%>
+                              </li>
+                         </ol>
+                    </div>
+               </div>
+
+               <!-- add content here -->
+
+
+
+               <div class="row">
+                    <div class="col-md-12">
+                         <div class="row">
+                              <div class="col-md-12">
+                                   <div class="card card-topline-aqua">
+                                        <div class="card-head">
+                                             <header>Tất Cả Bình Luận</header>
+                                             <div class="tools">
+                                                  <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                                                  <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                                                  <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                                             </div>
+                                        </div>
+                                        <div class="card-body ">
+                                             <div class="row p-b-20">
+                                                  <div class="col-md-6 col-sm-6 col-6">
+                                                       <div class="btn-group">
+                                                            <button id="xoa-nhieu" class="btn btn-danger">
+                                                                 Xoá Các comment đã chọn <i class="fa fa-trash"></i>
+                                                            </button>
+                                                       </div>
+                                                  </div>
+
+                                             </div>
+                                             <div class="table-responsive">
+                                                  <table id="example2" class="table table-striped custom-table table-hover">
+                                                       <thead>
+                                                            <tr>
+                                                                 <th>
+                                                                      <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
+                                                                           <input type="checkbox" class="group-checkable"
+                                                                                id="chontatca" data-set="#sample_1 .checkboxes" />
+                                                                           <span></span>
+                                                                      </label>
+                                                                 </th>
+                                                                 <th>Nội dung bình luận</th>
+                                                                 <th>Bài viết</th>
+                                                                 <th>Tài Khoản</th>
+                                                                 <th>Ngày Bình Luận</th>
+
+                                                                 <th>Edit</th>
+                                                            </tr>
+                                                       </thead>
+                                                       <tbody>
+
+                                                            <% if(data.docs){
+                                                                            
+                                                        data.docs.forEach(element => { %>
+                                                            <tr>
+                                                                 <td>
+                                                                      <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
+                                                                           <input type="checkbox" class="checkboxes"
+                                                                                value="<%=element.id%>" />
+                                                                           <input type="hidden" id="idcomment" value="<%= element.id%>">
+                                                                           <%if(element.post[0]){%>
+                                                                           <input type="hidden" id="idpost" value="<%= element.post[0].id%>">
+                                                                           <% }%>
+
+                                                                           <span></span>
+                                                                      </label>
+                                                                 </td>
+                                                                 <td>
+                                                                      <%= element.NoiDung%>
+                                                                 </td>
+
+                                                                 <td>
+                                                                      <%if(element.post[0]){%>
+                                                                      <%=element.post[0].tieude%>
+                                                                      <%}%>
+                                                                 </td>
+                                                                 <td>
+                                                                      <%if(element.user[0]){%>
+                                                                      <%=element.user[0].displayName%> |
+                                                                      <%=element.user[0].email%>
+                                                                      <%}%>
+                                                                 </td>
+                                                                 <td>
+                                                                 
+                                                                      <%= new Date(element.ngaytao ).toLocaleDateString() %>
+                                                                      <%= new Date(element.ngaytao ).toLocaleTimeString() %>
+                                                                 </td>
+
+
+
+
+
+
+
+                                                                 <td class="valigntop">
+
+                                                                      <div class="btn-group">
+                                                                           <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin"
+                                                                                type="button" data-toggle="dropdown"
+                                                                                aria-expanded="false"> Thực Thi
+                                                                                <i class="fa fa-angle-down"></i>
+                                                                           </button>
+                                                                           <ul class="dropdown-menu" role="menu">
+                                                                                <li>
+
+                                                                                     <a href="<%if(element.post[0]){%>/posts/<%=element.post[0].path%><%}else{%>#<%}%>">
+                                                                                          <i class="icon-cursor"></i>
+                                                                                          Đi đến bài viết
+                                                                                     </a>
+
+                                                                                </li>
+                                                                                <li>
+
+                                                                                     <a id="blockuser">
+                                                                                          <i class="icon-user-unfollow"></i>
+                                                                                          Khoá mõm User này
+                                                                                     </a>
+                                                                                     <%if(element.user[0]){%>
+
+                                                                                     <input type="hidden" id="iduser_ban"
+                                                                                          class="form-control" value="<%=element.user[0].id%>">
+
+
+                                                                                     <%}%>
+                                                                                </li>
+
+                                                                           </ul>
+
+                                                                      </div>
+                                                                 </td>
+
+                                                            </tr>
+                                                            <% });
+                                                   }%>
+
+
+
+
+                                                       </tbody>
+
+                                                  </table>
+
+                                                  <% if (data.pages > 0) { %>
+                                                  <ul class="pagination modal-1" style="float:right;">
+                                                       <% if (data.page == 1) { %>
+                                                       <li class="disabled"><a>&laquo Trước</a></li>
+                                                       <% } else { %>
+                                                       <li><a href="/admin/viewtypeofnew/1" class="prev">&laquo Trước</a></li>
+                                                       <% } %>
+                                                       <% var i = (Number(data.page) > 5 ? Number(data.page) - 4 : 1) %>
+                                                       <% if (i !== 1) { %>
+                                                       <li class="disabled"><a>...</a></li>
+                                                       <% } %>
+                                                       <% for (; i <= (Number(data.page) + 4) && i <= data.pages; i++) { %>
+                                                       <% if (i == data.page) { %>
+                                                       <li class="active"><a>
+                                                                 <%= i %></a></li>
+                                                       <% } else { %>
+                                                       <li><a href="/admin/viewtypeofnew/<%= i %>">
+                                                                 <%= i %></a></li>
+                                                       <% } %>
+                                                       <% if (i == Number(data.page) + 4 && i < data.pages) { %>
+                                                       <li class="disabled"><a>...</a></li>
+                                                       <% } %>
+                                                       <% } %>
+                                                       <% if (data.page == data.pages) { %>
+                                                       <li class="disabled"><a>Sau &raquo;</a></li>
+                                                       <% } else { %>
+                                                       <li><a href="/admin/viewtypeofnew/<%= data.pages %>" class="next">Sau
+                                                                 &raquo;</a></li>
+                                                       <% } %>
+                                                  </ul>
+                                                  <% } %>
+
+
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
+               <!-- add content here -->
+          </div>
+     </div>
+     <!-- end page content -->
+     <!-- start chat sidebar -->
+
+     <!-- end chat sidebar -->
+</div>
+<!-- end page container -->
+<!-- start footer -->
+<% include layouts/footer %>
+<script src="/assets/js/pageComment.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>

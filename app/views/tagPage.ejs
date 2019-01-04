@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<%include layouts/css%>
+
+<body>
+    
+    <!--menu mobile-->
+    <%include layouts/menumobile%>
+    <!--page-->
+    <div class="page">
+        <div class="wrap">
+            <!--topbar-->
+            <%include layouts/topBar%>
+            <!--header-->
+            
+            <%include layouts/header%>
+            <!--cols-->
+            <div class="cols">
+                <!--colleft-->
+                <div class="colleft">
+                    <!--list-news -->
+                    <div class="box">
+                        <div class="box-caption box-caption-no-background">
+                            <h2><a href="/tags/<%=dataTag.path%>"><%if(dataTag.nameLoaiTin){%><%=dataTag.nameLoaiTin%><%}%></a></h2>
+                            
+                            <input type="hidden" name="" id="idtag" class="form-control" value="<%=dataTag.id%>">
+                            
+                        </div>
+                        <div class="list-item-category" id="noidung">
+                             
+                           
+                        </div>
+                        <div class="paging-outer" id="phantrang">
+                           
+                        </div>
+                    </div>
+                </div>
+                <!--colright-->
+                <%include layouts/sideBar%>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!--footer-->
+        <!--footer-->
+        <%include layouts/footer%>
+    </div>
+    <!--scrip file-->
+    <%include layouts/js%>
+</body>
+<script src="/Web/js/pages/pageTag.js"></script>
+
+</html>

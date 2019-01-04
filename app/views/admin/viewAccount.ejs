@@ -1,0 +1,156 @@
+<% include layouts/header %>
+<!-- end header -->
+<!-- start page container -->
+<div class="page-container">
+    <!-- start sidebar menu -->
+    <% include layouts/sidebar %>
+    <!-- end sidebar menu -->
+    <!-- start page content -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="page-bar">
+                <div class="page-title-breadcrumb">
+                    <div class=" pull-left">
+                        <div class="page-title">
+                            <b>
+                                <%= page%></b>
+                        </div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="/">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+                        
+                        <li class="active">
+                            <%= page%>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- add content here -->
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card card-topline-aqua">
+                        <div class="card-head">
+                            <header>Tất Cả Tài Khoản</header>
+                        </div>
+                        <div class="card-body">
+
+                        <div class="table-responsive">
+                        <table id="example2" class="table table-striped custom-table table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="center">Tên Tài Khoản</th>
+                                    <th class="center">email</th>
+                                    <th class="center">role</th>
+                                    <th class="center">Ngày Thêm</th>
+                                    <th class="center">Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if(data.docs){
+                                                            
+                                        data.docs.forEach(element => { %>
+                                <tr class="odd gradeX">
+                                        <td class="user-circle-img sorting_1">
+                                                <img src="<%= element.image %>" alt="" width="40" height="40"> 
+                                        </td >
+                                    <td class="center">
+                                        <%= element.displayName %>
+                                    </td>
+
+                                    <td class="center">
+                                            <a href="mailto:<%= element.email %>">
+                                                    <%= element.email %> </a>
+                                   
+                                   
+                                    </td>
+                                    <td class="center">
+                                       <%if(element.role == 'admin'){%>
+                                        
+                                        <span class="badge badge-warning">ADMIN</span>
+                                        
+                                       <%}else{%>
+                                        <%= element.role %>
+                                       <%}%>
+                                   
+                                    </td>
+                                    
+                                    <td class="center">
+                                    
+                                    <%= new Date(element.dateAdded ).toLocaleDateString()%>
+                                       
+                                    </td>
+
+                                    <td class="center">
+                                        <input type="hidden" name="idTheLoai" value="<%= element.id %>">
+                                        
+                                        <a class="btn btn-primary btn-xs" href="/admin/editaccount/<%= element.id %>">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        
+                                    </td>
+                                </tr>
+                                <% });
+                                   }%>
+
+
+
+
+                            </tbody>
+
+                        </table>
+
+                        <% if (data.pages > 0) { %>
+                        <ul class="pagination modal-1" style="float:right;">
+                            <% if (data.page == 1) { %>
+                            <li class="disabled"><a>&laquo Trước</a></li>
+                            <% } else { %>
+                            <li><a href="/admin/allcategories/1" class="prev">&laquo Trước</a></li>
+                            <% } %>
+                            <% var i = (Number(data.page) > 5 ? Number(data.page) - 4 : 1) %>
+                            <% if (i !== 1) { %>
+                            <li class="disabled"><a>...</a></li>
+                            <% } %>
+                            <% for (; i <= (Number(data.page) + 4) && i <= data.pages; i++) { %>
+                            <% if (i == data.page) { %>
+                            <li class="active"><a>
+                                    <%= i %></a></li>
+                            <% } else { %>
+                            <li><a href="/admin/allcategories/<%= i %>">
+                                    <%= i %></a></li>
+                            <% } %>
+                            <% if (i == Number(data.page) + 4 && i < data.pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                            <% } %>
+                            <% } %>
+                            <% if (data.page == data.pages) { %>
+                            <li class="disabled"><a>Sau &raquo;</a></li>
+                            <% } else { %>
+                            <li><a href="/admin/allcategories/<%= data.pages %>" class="next">Sau &raquo;</a></li>
+                            <% } %>
+                        </ul>
+                        <% } %>
+
+
+                    </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- add content here -->
+        </div>
+    </div>
+    <!-- end page content -->
+    <!-- start chat sidebar -->
+
+    <!-- end chat sidebar -->
+</div>
+<!-- end page container -->
+<!-- start footer -->
+<% include layouts/footer %>

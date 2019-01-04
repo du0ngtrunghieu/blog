@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<%include layouts/css%>
+
+<body>
+    
+    <!--menu mobile-->
+    <%include layouts/menumobile%>
+    <!--page-->
+    <div class="page">
+        <div class="wrap">
+            <!--topbar-->
+            <%include layouts/topBar%>
+            <!--header-->
+            
+            <%include layouts/header%>
+            <!--cols-->
+            <div class="cols">
+                <!--colleft-->
+                <div class="colleft">
+                    <!--list-news -->
+                    <div class="box">
+                        <div class="box-caption box-caption-no-background">
+                            <h2><a href="#">Tìm Kiếm</a></h2>
+                            
+                           
+                            
+                        </div>
+                        <div class="list-item-category" id="noidung">
+                             <%if(data){
+                                  data.forEach(a => {%>
+                                   <article class="category-item">
+                                             <div class="row row-fix">
+                                                 <div class="col-md-6 col-sm-6 col-xs-12 col-fix">
+                                                     <article class="news-item-big">
+                                                         <div class="post-thumb">
+                                                             <a href="/posts/<%=a.path%>">
+                                                                 <img alt="" src="<%=a.thumb%>">
+                                                             </a>
+                                                         </div>
+                                                     </article>
+                                                 </div>
+                                                 <div class="col-md-6 col-sm-6 col-xs-12 col-fix">
+                                                     <div>
+                                                         <h3 class="post-title">
+                                                                 <a href="/posts/<%=a.path%>"><%=a.tieude%></a>
+                                                         </h3>
+                                                         <div class="post-meta">
+                                                             <span class="post-date">
+                                                                 <i class="ion-ios-clock">
+                                                                 </i>
+                                                                 <%=new Date(a.ngaytao ).toLocaleDateString()%>
+                                                             </span>
+                                                             <span class="post-author">
+                                                                 <i class="ion-person"></i>
+                                                                 <a href="#">
+                                                                     <%if(a.tacgia[0]){%>
+                                                                          <%=a.tacgia[0].displayName%>
+                                                                     <%}%>
+                                                                 </a>
+                                                             </span>
+                                                         </div>
+                                                         <div class="post-des">
+                                                             <%-a.tomtat%>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         </article>
+                                  <%});
+                             }%>
+                             
+                           
+                        </div>
+                        
+                    </div>
+                </div>
+                <!--colright-->
+                <%include layouts/sideBar%>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!--footer-->
+        <!--footer-->
+        <%include layouts/footer%>
+    </div>
+    <!--scrip file-->
+    <%include layouts/js%>
+</body>
+
+
+</html>

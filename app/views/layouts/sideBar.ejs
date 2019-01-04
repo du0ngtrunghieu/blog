@@ -1,0 +1,297 @@
+<div class="colright">
+    <!--box-->
+    <div class="box">
+        <div class="box-caption">
+            <h2><a href="#">Tuỳ Chọn </a></h2>
+        </div>
+
+        <div class="box-social">
+            <a href="/kiemtra">
+                 
+            <button type="button" class="btn btn-danger"><i class="material-icons">
+                    chat
+                    </i>  Tham gia Phòng Chat Nhóm
+            </button>
+            </a>
+          
+            
+            <div class="social-network">
+                
+                
+                
+
+
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--box-->
+    <div class="box">
+        <div class="box-caption">
+            <h2><a href="#">TIN MỚI</a></h2>
+        </div>
+        <div class="box-special">
+            <div class="owl-special-wrap">
+                <div class="owl-carousel owl-special">
+                    <% if(datatinmoi){
+                                        datatinmoi.forEach(a => {%>
+                    <div>
+                        <article class="news-item-big">
+                            <div class="post-thumb">
+                                <a href="/posts/<%=a.path%>">
+                                    <img alt="" src="<%=a.thumb%>">
+                                </a>
+                            </div>
+                            <h3 class="post-title">
+                                <a href="/posts/<%=a.path%>">
+                                    <%=a.tieude%></a>
+                            </h3>
+                            <div class="post-meta">
+                                <span class="post-date">
+                                    <i class="ion-ios-clock">
+                                    </i>
+                                    <%=moment(a.ngaytao).fromNow(); %>
+                                   
+                                </span>
+                                <span class="post-author">
+                                    <i class="ion-person"></i>
+                                    <a href="#">
+                                        <% if(a.tacgia[0]){%>
+                                        <%=a.tacgia[0].displayName%>
+                                        <%} %>
+                                    </a>
+                                </span>
+                            </div>
+                        </article>
+                    </div>
+                    <% });   
+
+                                    }%>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--box-->
+    <div class="box">
+        <div class="box-caption">
+            <h2><a href="#">BÀI VIẾT NHIỀU LƯỢT XEM</a></h2>
+        </div>
+        <ul class="list-news list-news-right list-news-meta">
+            <% if(mostView){
+                                mostView.forEach(a => {%>
+            <li>
+                <div class="post-thumb">
+                    <a href="/posts/<%=a.path%>">
+                        <img alt="" src="<%=a.thumb%>" width="70" height="60">
+                    </a>
+                </div>
+                <h3><a href="/posts/<%=a.path%>">
+                        <%= a.tieude%></a></h3>
+                <div class="post-meta">
+                    <span class="post-date">
+                        <i class="ion-ios-clock">
+                        </i>
+                       
+                        <%= moment(a.ngaytao).format('L'); %>
+                       
+                    </span>
+                    <span class="post-category">
+                        <i class="ion-folder"></i>
+                        <% if(a.loaitin[0]){%>
+                        <a href="/tags/<%=a.loaitin[0].path%>">
+                            <%=a.loaitin[0].nameLoaiTin%>
+                        </a>
+                        <%}%>
+                    </span>
+                </div>
+            </li>
+            <%});
+                            }%>
+
+
+        </ul>
+    </div>
+    <!--box-->
+    <!--box-->
+    <div class="box">
+        <div class="box-caption">
+            <h2><a href="#">BÀI VIẾT NHIỀU Bình Luận</a></h2>
+        </div>
+        <ul class="list-news list-news-right list-news-meta">
+            <% if(mostComment){
+                                mostComment.forEach(b => {%>
+            <li>
+                <div class="post-thumb">
+                    <a href="/posts/<%=b.path%>">
+                        <img alt="" src="<%=b.thumb%>" width="70" height="60">
+                    </a>
+                </div>
+                <h3><a href="/posts/<%=b.path%>">
+                        <%= b.tieude%></a></h3>
+                <div class="post-meta">
+                    <span class="post-date">
+                        <i class="ion-ios-clock">
+                        </i>
+                        <%=moment(b.ngaytao).format('L'); %>
+                    </span>
+                    <span class="post-category">
+                        <i class="ion-folder"></i>
+                        <% if(b.loaitin[0]){%>
+                        <a href="/tags/<%=b.loaitin[0].path%>">
+                            <%=b.loaitin[0].nameLoaiTin%>
+                        </a>
+                        <%}%>
+                    </span>
+                </div>
+            </li>
+            <%});
+                            }%>
+
+
+        </ul>
+    </div>
+    <!--box-->
+    <div class="box">
+        <div class="box-caption">
+            <h2><a href="#">Danh Sách Tags</a></h2>
+        </div>
+        <div class="box-tag">
+            <div class="tagcloud">
+                <% if(danhsachtag){
+                                    danhsachtag.forEach(a => {%>
+                <a href="/tags/<%=a.path%>">
+                    <%=a.nameLoaiTin%></a>
+                <%});
+                                    
+                                }%>
+
+            </div>
+        </div>
+    </div>
+    <!--box-->
+
+    <!--box-->
+    <div class="box">
+        <div class="box-caption">
+            <h2><a href="#">Danh Sách Thể Loại</a></h2>
+        </div>
+        <div class="box-category">
+
+            <ul>
+               <% if(danhsachtheloai){
+                   danhsachtheloai.map(rs =>{
+                                var th = 0
+                                rs.loaitin.map(rs=>{
+                                            rs.baiviet.map(rs=>{
+                                                th = th+1
+                                            })
+                                })
+                   %>
+
+                    <li>
+                    <a href="/category/<%= rs.path%>">
+                        <%= rs.nameTheLoai%>
+                        <span>
+                            <%=th%></span>
+                    </a>
+                </li>
+                   <%})
+               }%>
+                
+               
+
+
+
+            </ul>
+        </div>
+    </div>
+    <!--box-->
+    <div class="box hidden-xs">
+        <div class="box-caption">
+            <h2><a href="#">Quảng Cáo</a></h2>
+        </div>
+        <div class="box-advertising">
+            <a href="#">
+                <img alt="" src="/Web/images/ads.jpg" />
+            </a>
+        </div>
+    </div>
+    <!--box-->
+    <div class="box hidden-xs">
+        <div class="tab-caption">
+            <ul role="tablist">
+                <li class="active">
+                    <a href="#tab1" role="tab" data-toggle="tab">
+                        Bài Cũ
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="tab1">
+                <ul class="list-news list-news-right">
+                    <%if(tincu){
+                                        tincu.forEach(a => {%>
+                    <li>
+                        <div class="post-thumb">
+                            <a href="/posts/<%=a.path%>">
+                                <img alt="" src="<%=a.thumb%>" width="70" height="60">
+                            </a>
+                        </div>
+                        <h3><a href="/posts/<%=a.path%>">
+                                <%=a.tieude%></a></h3>
+                    </li>
+                    <%});
+                                    }%>
+
+
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="box hidden-xs">
+        <div class="tab-caption">
+            <ul role="tablist">
+                <li class="active">
+                    <a href="#tab1" role="tab" data-toggle="tab">
+                        Bài Viết Ngẫu Nhiên
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="tab-content">
+
+
+            <div role="tabpanel" class="tab-pane active" id="tab3">
+                <ul class="list-news list-news-right">
+                    <% if(dataRandom){
+                                        dataRandom.forEach(a => {%>
+                    <li>
+                        <div class="post-thumb">
+                            <a href="/posts/<%=a.path%>">
+                                <img alt="" src="<%=a.thumb%>" width="70" height="60">
+                            </a>
+                        </div>
+                        <h3>
+                            <a href="/posts/<%=a.path%>">
+                                <%=a.tieude%></a>
+                        </h3>
+                    </li>
+                    <%});
+                                    }%>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
