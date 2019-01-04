@@ -12,7 +12,7 @@ var indexRouter = require('./app/controllers/index');
 
 var adminRouter = require('./app/controllers/admin.Controller')
 
-// test 
+// test tiếp nào 
 
 
 var app = express();
